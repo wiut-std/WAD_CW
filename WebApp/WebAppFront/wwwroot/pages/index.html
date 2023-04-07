@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+
+<body>
+    <div class="form-group">
+        <a href="#!/create" class="btn btn-primary">Create New Task</a>
+    </div>
+    <div class="row">
+        <div class="col-md-4" ng-repeat="t in tasks">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h4 class="my-0 font-weight-normal">{{t.name}}</h4>
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title">{{t.priority.name}} <small class="text-muted"> {{t.status}}</small></h1>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>{{t.description}}</li>
+                        <li>Deadline: {{t.deadline}}</li>
+                    </ul>
+                    <a href="#!/details/{{t.id}}" class="btn btn-lg btn-block btn-outline-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+
+</html>

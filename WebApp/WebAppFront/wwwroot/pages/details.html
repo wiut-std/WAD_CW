@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Task Details</h2>
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Name</td>
+                        <td>{{details.name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Description</td>
+                        <td>{{details.description}}</td>
+                    </tr>
+                    <tr>
+                        <td>Deadline</td>
+                        <td>{{details.deadline}}</td>
+                    </tr>
+                    <tr>
+                        <td>Priority</td>
+                        <td>{{details.priority}}</td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td>{{details.status}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="form-group">
+                <a href="#!/edit/{{details.id}}" class="btn btn-success btn-block">Edit</a>
+                <a href="#!/" class="btn btn-primary btn-block">Go back</a>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+</html>

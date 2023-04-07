@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="text-center">Create New Task</h3>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Task Name:</label>
+                                <input type="text" class="form-control" id="name" ng-model="task.name" placeholder="Enter Task Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Description:</label>
+                                <textarea class="form-control" id="description" ng-model="task.description" placeholder="Enter Description"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="deadline">Deadline:</label>
+                                <input type="date" class="form-control" id="deadline" ng-model="task.deadline" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="status">Task Status:</label>
+                                <input type="text" class="form-control" id="status" ng-model="task.status" placeholder="Enter Task Status" required>
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary" ng-click="AddTask()" ng-disabled="myForm.$invalid">Create Task</button>
+                                <a href="#!/" class="btn btn-danger ml-2">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+
+</html>

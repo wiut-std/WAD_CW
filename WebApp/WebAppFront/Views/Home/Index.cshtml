@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div ng-app="WebAppFront">
+    <div ng-view></div>
+</div>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+<script type="text/javascript">
+    var baseURL = 'https://localhost:44393/api/'
+    angular
+        .module('WebAppFront', ['ngRoute'])
+        .config(function ($routeProvider) {
+            $routeProvider
+                .when('/', {
+                    templateUrl: 'pages/index.html',
+                    controller: 'IndexController'
+                })
+                .when('/create', {
+                    templateUrl: 'pages/create.html',
+                    controller : 'CreateController'
+                })
+                .when('/details/:taskId', {
+                    templateUrl: 'pages/details.html',
+                    controller: 'DetailsController'
+                })
+                .when('/edit/:taskId', {
+                    templateUrl: 'pages/edit.html',
+                    controller: 'EditController'
+                })
+                .otherwise({
+                    redirectTo: '/'
+                });
+                    
+        })
+
+        .controller('IndexController', ['$scope', '$http', function ($scope, $http) {
+            $scope.tasks = [];
+            $http.get('https://localhost:44393/api/Tasks/')
+                .then(function (res) {
+                    $scope.tasks = res.data;
+                })
+        }])
+
+        .controller('CreateController', ['$scope', '$http', '$location', function ($scope, $http, $location){
+            $scope.task = {
+                Id : 0,
+                name: '',
+                description : '',
+                deadline : '2023-03-25T10:30:30',
+                taskPriority : '',
+                status : ''
+            };
+            $scope.AddTask = function() {
+                $http.post('https://localhost:44393/api/Tasks/', $scope.task)
+                    .then(function (res) {
+                        $location.path('/');
+                    });
+            };
+        }])
+
+        .controller('DetailsController', ['$scope', '$http', '$routeParams', function($scope, $http, $routeParams) {
+            $scope.details = [];
+
+            $http.get('https://localhost:44393/api/Tasks/' + $routeParams.taskId)
+                .then(function (res) {
+                    $scope.details = res.data;
+                });
+        }])
+
+        .controller('EditController', ['$scope', '$http', '$location', '$routeParams', function($scope, $http, $location, $routeParams) {
+            $scope.edit = [];
+
+            $http.get('https://localhost:44393/api/Tasks/' + $routeParams.taskId)
+                .then(function (res) {
+                    $scope.edit = res.data;
+                });
+
+            $scope.Edit = function () {
+                $http.put('https://localhost:44393/api/Tasks/' + $routeParams.taskId, $scope.edit)
+                    .then(function(res) {
+                        $location.path('/');
+                    });
+            };
+
+            $scope.Delete = function () {
+                $http.delete('https://localhost:44393/api/Tasks/' + $routeParams.taskId, $scope.edit)
+                    .then(function (res) {
+                        $location.path('/');
+                    });
+            };
+
+
+        }])
+
+
+
+
+
+
+</script>
